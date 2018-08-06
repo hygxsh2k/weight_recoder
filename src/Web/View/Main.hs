@@ -4,7 +4,7 @@ module Web.View.Main (loadMainTemplate, mainView) where
 
 import           Control.Monad.IO.Class (liftIO)
 import           Data.Function          (on)
-import           Data.List              (groupBy, sortBy)
+import           Data.List              (groupBy, sortOn)
 import qualified Data.Text              as TXT
 import qualified Data.Time.Format       as TM
 import qualified Data.Time.LocalTime    as TM
@@ -40,7 +40,7 @@ toZonedTime = TM.utcToLocalZonedTime . TM.localTimeToUTC TM.utc
 weightGraphValue :: [WRecord.WeightRecord] -> WRAction [Value]
 weightGraphValue wrs = do
   flatWrs <- liftIO $ mapM flat wrs
-  let wrss = groupBy ((==) `on` fst) . sortBy (compare `on` fst) $ flatWrs
+  let wrss = groupBy ((==) `on` fst) $ sortOn fst flatWrs
   return $ map groupToValue wrss
   where
     flat wr = do

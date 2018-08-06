@@ -9,11 +9,11 @@ import qualified Network.Wai           as WAI
 import           Web.Action.Login      (loginAction)
 import           Web.Action.NewRecord  (newRecordAction)
 import           Web.Action.Register   (registerAction)
-import           Web.Core              (WRState (WRState, wrstMainTemplate, wrstStartTemplate),
-                                        WRAction, WRApp, WRConfig (..),
+import           Web.Core              (WRAction, WRApp, WRConfig (..),
                                         WRContext (wrconUser),
-                                        WRSession (wrsesUser), emptyContext,
-                                        emptySession)
+                                        WRSession (wrsesUser),
+                                        WRState (WRState, wrstMainTemplate, wrstStartTemplate),
+                                        emptyContext, emptySession)
 import           Web.Spock             (get, getContext, post, prehook,
                                         readSession, root, runSpock, spock)
 import           Web.Spock.Config      (PoolOrConn (PCPool), defaultSpockCfg)
